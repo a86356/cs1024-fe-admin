@@ -1,10 +1,21 @@
-import {createApi} from './axios';
-import create from "../views/staff/create";
+import {createApi,getcommonlist} from './axios';
 
 
 
 //账户
 export const login = createApi();
+
+
+// 获得列表的方法
+export const getlist=getcommonlist();
+
+
+//会员
+export const addnewmember = createApi();
+
+//通用接口
+export const commonapi=createApi();
+
 export const changepassword = createApi();
 export const logout = createApi();
 export const getgzhconfig = createApi();

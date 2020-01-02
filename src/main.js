@@ -35,18 +35,18 @@ Date.prototype.Format = function (fmt) {
   return fmt;
 }
 
-
-var age=33;
-
-var p1={
-  age:18,
-  showage:()=>{
-    console.log(this.age)
-  }
-}
+Vue.filter('keeptwo',function(data){
+  return data.toFixed(2)
+})
 
 
-p1.showage()
+import mavonEditor from 'mavon-editor'
+// markdown-it对象：md.s_markdown, md => mavonEditor实例
+//                 or
+//                 mavonEditor.markdownIt
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
 
 
 /* eslint-disable no-new */

@@ -1,4 +1,6 @@
 import Validator from '@/utils/validator.js'
+import {commonapi} from '@/api/apis'
+
 export default {
   data(){
     return {
@@ -32,12 +34,27 @@ export default {
       },
       PAYCOLUMN:"paycolumn",
       PAYDATA:"paydata",
+      searchdata:{},
+      uploadToken:'',
+      qiniuUploadUrl:"http://upload-z2.qiniup.com",
+      baseURL:'http://cdn.cs1024.com/'
     }
   },
   mounted(){
 
   },
   methods:{
+    getUploadToken(){
+      return  commonapi({
+        service:"admin.getqiniutoken"
+      })
+    },
+    showNoticeSuccess(msg){
+      this.$Notice.success({
+        title:msg,
+        desc: '成功',
+      });
+    },
     _sendcode(param) {
       let phone = param.mobileNo;
       let ret= Validator.v.vPhone(phone);
@@ -158,6 +175,9 @@ export default {
           });
           break;
       }
+    },
+    showsuccessmsg(msg){
+      this.$Message.success(msg);
     },
     nav(path){
       this.$router.push(path);

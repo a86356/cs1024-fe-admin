@@ -4,7 +4,7 @@
 
       <div style="margin-bottom: 20px;text-align: center;">
 
-        <h1 @click="quicklogin">淘客后台</h1>
+        <h1 @click="quicklogin">行者课堂</h1>
 
       </div>
       <div class="loginform">
@@ -29,7 +29,6 @@ import BaseConfig from '@/config/config'
 import {login,registerAgent} from '@/api/apis';
 import {setCacheData} from "@/utils/cache";
 import Validator from '@/utils/validator.js'
-import Encrypt from '@/utils/encrypt'
 
 export default {
     name:"Login",
@@ -173,7 +172,15 @@ export default {
           this.register.modal=true;
         },
         quicklogin(){
+            login({
+                service:"admin.login",
+                username:'cs',
+                password:'2'
+            }).then(res=>{
 
+                setCacheData({k:BaseConfig.TOKEN_KEY,v:res.auth_key})
+                this.nav({path:BaseConfig.HOME_PATH})
+            })
         },
         registerConfirm(){
           let d= this.register.data;

@@ -55,9 +55,44 @@ axios.interceptors.response.use(
 
 
 
+export function getcommonlist() {
+  return  params=> {
+    return new Promise((resolve,reject) => {
+      let obj={
+        service:"admin.getlist",
+        ...params
+      }
 
-export  function  createApi(){
+      axios['post'](BaseConfig.baseURL,obj)
+        .then(response => {
 
+          //token 过期
+          let code =response.data.code;
+
+
+          if(code!='0'){
+
+            Context.showmsg('error',response.data.msg);
+            reject(response.data);
+            return;
+          }
+
+          if(code=='0'){
+
+            // Context.showmsg('success',response.data.msg);
+            resolve(response.data.data);
+            return;
+          }
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  }
+}
+
+
+export function createApi(){
   return  params=> {
     return new Promise((resolve,reject) => {
 
@@ -81,9 +116,6 @@ export  function  createApi(){
             resolve(response.data.data);
             return;
           }
-
-
-
         })
         .catch(err => {
           reject(err)

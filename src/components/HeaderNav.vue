@@ -1,18 +1,7 @@
 <template>
 <Menu mode="horizontal" theme="primary"    style="position:fixed;width:100%">
-    <div class="layout-logo"><a @click="go_home">无极淘客系统</a></div>
+  <div class="layout-logo"><a @click="go_home">行者课堂</a></div>
 
-    <div class="menu_tabs">
-      <div class="item" @click="change_tab(item)" :class="item.selected?'active':''" v-for="(item,index) in breadcrumb" :key="index">
-        <div class="title">
-          {{item.title}}
-        </div>
-        <div class="close"></div>
-      </div>
-      <div class="item" @click="clearAllBreadCrumb" :class="breadcrumb.length>0?'':'hide'">
-        清除全部
-      </div>
-    </div>
 
     <div class="layout-nav" :style="{width:120*(list.length+1) + 'px'}">
         <Submenu name="my">

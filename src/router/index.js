@@ -15,6 +15,12 @@ import OrderList from '@/views/order/list.vue';
 import CustomerBaseList from '@/views/customer/list.vue';
 import MoneyLogList from '@/views/moneylog/list.vue';
 import MsgList from '@/views/customer/msglist.vue';
+import MemberList from '@/views/member/list.vue';
+import CheckinList from '@/views/member/checkinlist.vue';
+import VideoList from '@/views/video/list.vue';
+import ClassesCategory from '@/views/classes/category.vue';
+import ClassesList from '@/views/classes/list.vue';
+import SegList from '@/views/classes/seglist.vue';
 import BaseConfig from '@/config/config'
 
 
@@ -28,28 +34,24 @@ var menu =[
     path: '/login', component: Login, title:"登录", icon:"ios-calendar-outline", name:"login",
   },
   {
-    path: '/admin', component: AdminIndex, title:"基础管理", icon:"ios-calendar-outline", menu:true, name:"basemanage",
+    path: '/admin', component: AdminIndex, title:"会员管理", icon:"ios-calendar-outline", menu:true, name:"basemanage",
     children:[
-      { path: 'accountmanage', component: AccountIndex,title:"账号管理",icon:"",menu:true,name:'accountmanage'},
-      { path: 'gzh', component: GZH,title:"公众号设置",icon:"",menu:true,name:'gzh'},
-      { path: 'tkconfig', component: TKCONFIG,title:"阿里妈妈设置",icon:"",menu:true,name:'tkconfig'},
-      { path: 'fanlirate', component: FANLIRAET,title:"返利比设置",icon:"",menu:true,name:'fanlirate'},
+      { path: 'memberlist', component: MemberList,title:"会员列表",icon:"",menu:true,name:'memberlist'},
+      { path: 'checkinlist', component: CheckinList,title:"签到列表",icon:"",menu:true,name:'checkinlist'},
     ]
   },
   {
-    path: '/admin', component: AdminIndex, title:"客户管理", icon:"md-cube", menu:true, name:"customermanage",
+    path: '/admin', component: AdminIndex, title:"视频管理", icon:"md-cube", menu:true, name:"videomanage",
     children:[
-      { path: 'customerbaselist', component: CustomerBaseList,title:"客户列表",icon:"",menu:true,name:'customerbaselist'},
-      { path: 'moneyloglist', component: MoneyLogList,title:"金额日志",icon:"",menu:false,name:'MoneyLogList'},
-      { path: 'checkinlist', component: CHECKINLIST,title:"客户签到列表",icon:"",menu:true,name:'checkinlist'},
-      { path: 'withdrawlist', component: WITHDRAWLIST,title:"客户提现列表",icon:"",menu:true,name:'withdrawlist'},
-      { path: 'msglist', component: MsgList,title:"客服消息列表",icon:"",menu:true,name:'msglist'},
+      { path: 'videolist', component: VideoList,title:"上传视频",icon:"",menu:true,name:'videolist'},
     ]
   },
   {
-    path: '/admin', component: AdminIndex, title:"订单管理", icon:"ios-paper", menu:true, name:"ordermanage",
+    path: '/admin', component: AdminIndex, title:"课程管理", icon:"ios-paper", menu:true, name:"classesmanage",
     children:[
-      { path: 'orderlist', component: OrderList,title:"订单列表",icon:"",menu:true,name:'orderlist'},
+      { path: 'classeslist', component: ClassesList,title:"课程大课",icon:"",menu:true,name:'classeslist'},
+      { path: 'seglist', component: SegList,title:"课程小课",icon:"",menu:true,name:'seglist'},
+      { path: 'classescategory', component: ClassesCategory,title:"课程分类",icon:"",menu:true,name:'classcategory'},
     ]
   },
 ];

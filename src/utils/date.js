@@ -44,6 +44,11 @@ export function cntoymd(d) {
   return date;
 }
 
+//Tue Dec 31 2019 11:06:08 GMT+0800 (中国标准时间) 转10位时间戳
+export function cnto10time(expired_time) {
+  return  new Date(expired_time).getTime()/1000;
+}
+
 export function _13toymdhis(t) {
   var date = new Date(t);
 
@@ -61,4 +66,20 @@ export function _13toymdhis(t) {
 
   date = year+'-'+month+'-'+day +' '+h+':'+m+':'+s;
   return date;
+}
+// 10位到yyyy-mm-dd hh:ii:ss
+export const formatTime = (timestamp) => {
+  var date = new Date(timestamp*1000)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+
+}
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
 }
