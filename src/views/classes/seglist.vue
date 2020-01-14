@@ -8,7 +8,7 @@
         </Select>
       </FormItem>
       <FormItem label="课程小课">
-        <Input v-model="formItem.seg_name" placeholder="请输入小课名称"></Input>
+        <Input v-model="formItem.seg_name" @input="search" placeholder="请输入小课名称"></Input>
       </FormItem>
       <FormItem label="上下架">
         <Select @on-change="search" v-model="formItem.status" style="width:200px">
@@ -143,21 +143,52 @@
                         title: "小课名",
                         key: "seg_name"
                     },
+                    // {
+                    //     title: "上下架",
+                    //     key: "status",
+                    //     render:(h,params)=>{
+                    //         let {status}  =params.row;
+                    //         let color='green';
+                    //         let msg='';
+                    //         switch (status) {
+                    //             case '1':
+                    //                 color='green'
+                    //                 msg='上架';
+                    //                 break;
+                    //             case '2':
+                    //                 color='red'
+                    //                 msg='下架';
+                    //                 break;
+                    //         }
+                    //
+                    //         return h("div", [
+                    //             h(
+                    //                 "Tag",
+                    //                 {
+                    //                     props: {
+                    //                         color:color
+                    //                     }
+                    //                 },
+                    //                 msg
+                    //             )
+                    //         ]);
+                    //     },
+                    // },
                     {
-                        title: "上下架",
-                        key: "status",
+                        title: "是否收费",
+                        key: "isvip",
                         render:(h,params)=>{
-                            let {status}  =params.row;
+                            let {isvip}  =params.row;
                             let color='green';
                             let msg='';
-                            switch (status) {
+                            switch (isvip) {
                                 case '1':
                                     color='green'
-                                    msg='上架';
+                                    msg='免费';
                                     break;
                                 case '2':
                                     color='red'
-                                    msg='下架';
+                                    msg='收费';
                                     break;
                             }
 
@@ -198,6 +229,7 @@
                         fixed:'right',
                         render: (h, params) => {
                             return h("div", [
+
                                 h(
                                     "Button",
                                     {
@@ -210,23 +242,51 @@
                                         },
                                         on: {
                                             click: () => {
-                                                let {id,status}=params.row;
-                                                let s=status==1?2:1
+                                                let {id,isvip}=params.row;
+                                                let s= isvip=="1"?"2":"1"
 
                                                 commonapi({
-                                                    service:'classes.updateseg',
-                                                    status:s,
+                                                    service:'segments.changevip',
+                                                    isvip:s,
                                                     id:id
                                                 }).then(res=>{
                                                     this.showNoticeSuccess('更新成功');
-                                                    this.reload();
+                                                    //this.reload();
+                                                    this.loadData_table();
                                                 })
                                             }
                                         }
                                     },
-                                    "上/下架"
+                                    "收费/免费"
                                 ),
-
+                                // h(
+                                //     "Button",
+                                //     {
+                                //         props: {
+                                //             type: "primary",
+                                //             size: "small"
+                                //         },
+                                //         style: {
+                                //             marginRight: "5px"
+                                //         },
+                                //         on: {
+                                //             click: () => {
+                                //                 let {id,status}=params.row;
+                                //                 let s=status==1?2:1
+                                //
+                                //                 commonapi({
+                                //                     service:'classes.updateseg',
+                                //                     status:s,
+                                //                     id:id
+                                //                 }).then(res=>{
+                                //                     this.showNoticeSuccess('更新成功');
+                                //                     this.reload();
+                                //                 })
+                                //             }
+                                //         }
+                                //     },
+                                //     "上/下架"
+                                // ),
                             ]);
                         }
                     }
@@ -291,14 +351,18 @@
             },
             loadData_table(){
 
-                getlist({
+
+
+                commonapi({
                     page:this.page,
                     table:'classes_segments',
-                    search:this.searchdata
+                    search:this.searchdata,
+                    service:"admin.getlikelist"
                 }).then(res=>{
                     this.list1=res.list;
                     this.counts=res.count;
                 })
+
             },
             search(){
 
@@ -348,6 +412,8 @@
                if(query==''){
                    return data;
                }else{
+
+
                    return data.label.indexOf(query) > -1;
                }
 

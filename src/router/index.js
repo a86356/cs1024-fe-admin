@@ -34,10 +34,11 @@ var menu =[
     path: '/login', component: Login, title:"登录", icon:"ios-calendar-outline", name:"login",
   },
   {
-    path: '/admin', component: AdminIndex, title:"会员管理", icon:"ios-calendar-outline", menu:true, name:"basemanage",
+    path: '/admin', component: AdminIndex, title:"课程管理", icon:"ios-paper", menu:true, name:"classesmanage",
     children:[
-      { path: 'memberlist', component: MemberList,title:"会员列表",icon:"",menu:true,name:'memberlist'},
-      { path: 'checkinlist', component: CheckinList,title:"签到列表",icon:"",menu:true,name:'checkinlist'},
+      { path: 'classeslist', component: ClassesList,title:"课程大课",icon:"",menu:true,name:'classeslist'},
+      { path: 'seglist', component: SegList,title:"课程小课",icon:"",menu:true,name:'seglist'},
+      { path: 'classescategory', component: ClassesCategory,title:"课程分类",icon:"",menu:true,name:'classcategory'},
     ]
   },
   {
@@ -47,11 +48,10 @@ var menu =[
     ]
   },
   {
-    path: '/admin', component: AdminIndex, title:"课程管理", icon:"ios-paper", menu:true, name:"classesmanage",
+    path: '/admin', component: AdminIndex, title:"会员管理", icon:"ios-calendar-outline", menu:true, name:"basemanage",
     children:[
-      { path: 'classeslist', component: ClassesList,title:"课程大课",icon:"",menu:true,name:'classeslist'},
-      { path: 'seglist', component: SegList,title:"课程小课",icon:"",menu:true,name:'seglist'},
-      { path: 'classescategory', component: ClassesCategory,title:"课程分类",icon:"",menu:true,name:'classcategory'},
+      { path: 'memberlist', component: MemberList,title:"会员列表",icon:"",menu:true,name:'memberlist'},
+      { path: 'checkinlist', component: CheckinList,title:"签到列表",icon:"",menu:true,name:'checkinlist'},
     ]
   },
 ];

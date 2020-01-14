@@ -152,7 +152,7 @@
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="primary" size="large" long  @click="updateform">新增</Button>
+        <Button type="primary" size="large" long  @click="updateform">保存</Button>
       </div>
     </Modal>
 
@@ -357,7 +357,7 @@
                                             }
                                         }
                                     },
-                                    "更新"
+                                    "修改"
                                 ),
                                 h(
                                     "Button",
